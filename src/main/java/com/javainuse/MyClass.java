@@ -1,10 +1,36 @@
+package com.javainuse;
+
+import java.util.Objects;
+
 //// you can also use imports, for example:
 //// import java.util.*;
 //
 //// you can write to stdout for debugging purposes, e.g.
 //// System.out.println("this is a debug message");
 //
-//class Solution {
+class Solution {
+    private final Integer name;
+    private final String code;
+
+    public Solution(Integer name, String code) {
+        this.name = name;
+        this.code = code;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Solution solution = (Solution) o;
+        return Objects.equals(name, solution.name) &&
+                Objects.equals(code, solution.code);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, code);
+    }
+}
 //    public int solution(String S) {
 //
 //        // Clearer API on validation, null here
