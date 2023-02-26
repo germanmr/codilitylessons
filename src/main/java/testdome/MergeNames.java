@@ -14,13 +14,14 @@ public class MergeNames {
         Stream<String> stream2 = Stream.of(names2).distinct().peek(value-> System.out.println(value));
         System.out.println(stream2);
 
-        String[] uniquesArray = Stream.concat(
-                                    stream1,
-//                                    stream2.filter(value -> stream1.anyMatch(value2-> value2.equals(value)) ))
-                                    stream2.anyMatch(value -> stream1.))
-                .toArray( String[]::new);
-
-        return uniquesArray;
+//        String[] uniquesArray = Stream.concat(
+//                                    stream1,
+////                                    stream2.filter(value -> stream1.anyMatch(value2-> value2.equals(value)) ))
+//                                    stream2.anyMatch(value -> stream1.))
+//                .toArray( String[]::new);
+//
+//        return uniquesArray;
+        return null;
 
 
     }
