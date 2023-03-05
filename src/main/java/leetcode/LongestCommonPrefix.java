@@ -11,7 +11,7 @@ public class LongestCommonPrefix {
     }
 
     public void run() throws Exception {
-        LongestCommonPrefix.Solution solution = new LongestCommonPrefix.Solution();
+        LongestCommonPrefix.Solution solution = new Solution();
         Map<String[], String> testCases = new HashMap<>();
         testCases.put(new String[]{"ab", "a"}, "a");
         testCases.put(new String[]{"a"}, "a");
@@ -25,7 +25,16 @@ public class LongestCommonPrefix {
         }
     }
 
-    class Solution {
+    /*
+    *   ["ab", "a"]					-> "a"
+        ["a"]						-> ""
+        ["flower","flow","flight"]	-> "fl"
+        ["dog","racecar","car"]		-> ""
+        the longest prefix existing in ALL Strings of the array
+    *
+    * */
+
+    static class Solution {
 
         public String longestCommonPrefix(String[] strs) {
 
