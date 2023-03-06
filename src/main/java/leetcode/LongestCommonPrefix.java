@@ -13,12 +13,17 @@ public class LongestCommonPrefix {
     public void run() throws Exception {
         LongestCommonPrefix.Solution solution = new Solution();
         Map<String[], String> testCases = new HashMap<>();
-        testCases.put(new String[]{"ab", "a"}, "a");
-        testCases.put(new String[]{"a"}, "a");
-        testCases.put(new String[]{"flower", "flow", "flight"}, "fl");
-        testCases.put(new String[]{"dog", "racecar", "car"}, "");
+        testCases.put(new String[]{"ab", "a"}, "a"); // Search word(first element) is longer only 2(two) elements!!
+        testCases.put(new String[]{"a"}, "a"); // one element!
+        testCases.put(new String[]{"flower", "flow", "flight"}, "fl"); // different word on third position
+        testCases.put(new String[]{"fo", "fo", "fi"}, "f"); // different word on third position
+        testCases.put(new String[]{"dog", "racecar", "car"}, ""); // no prefix, only suffix!!
+        testCases.put(new String[]{"fow", "fo", "fi"}, "f"); // search word is longer
 
         for (Map.Entry<String[], String> entry : testCases.entrySet()) {
+            if (!solution.longestCommonPrefixBruteForce(entry.getKey()).equals(entry.getValue())) {
+                throw new Exception("Invalid result");
+            }
             if (!solution.longestCommonPrefix(entry.getKey()).equals(entry.getValue())) {
                 throw new Exception("Invalid result");
             }
@@ -35,6 +40,20 @@ public class LongestCommonPrefix {
     * */
 
     static class Solution {
+
+        public String longestCommonPrefixBruteForce(String[] strs) {
+
+            String prefix = "";
+            for (int i = 1; i <= strs[0].length(); i++) {
+                for (int j = 1; j < strs.length; j++) {
+                    if (i > strs[j].length() || !(strs[0].substring(0, i).equals(strs[j].substring(0, i)))) {
+                        return prefix;
+                    }
+                }
+                prefix = strs[0].substring(0, i);
+            }
+            return prefix;
+        }
 
         public String longestCommonPrefix(String[] strs) {
 
