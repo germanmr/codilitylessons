@@ -43,6 +43,9 @@ public class LongestCommonPrefix {
 
         public String longestCommonPrefixBruteForce(String[] strs) {
 
+            // strs[0].length() = N, loop N times for array length strs.length -> M
+            // N*M
+
             String prefix = "";
             for (int i = 1; i <= strs[0].length(); i++) {
                 for (int j = 1; j < strs.length; j++) {
@@ -55,6 +58,15 @@ public class LongestCommonPrefix {
             return prefix;
         }
 
+        /**
+         * -- For each array element -> strs.length -> N
+         * -- Persist on a HashMap common prefix
+         * -- Loop set elements < N
+         * ( N-1*M + M )
+         *
+         * @param strs
+         * @return
+         */
         public String longestCommonPrefix(String[] strs) {
 
             if (strs.length == 1) {
@@ -62,6 +74,7 @@ public class LongestCommonPrefix {
             }
 
             Map<String, Integer> prefixes = new HashMap<>();
+
 
             for (String currentWord : strs) {
                 for (int j = 1; j <= currentWord.length(); j++) {
@@ -78,8 +91,10 @@ public class LongestCommonPrefix {
 
             String lPrefix = "";
             for (Map.Entry<String, Integer> entry : prefixes.entrySet()) {
-                if (entry.getValue() == strs.length && entry.getKey().length() > lPrefix.length()) {
-                    lPrefix = entry.getKey();
+                int repetitions = entry.getValue();
+                String currentPrefix = entry.getKey();
+                if (repetitions == strs.length && currentPrefix.length() > lPrefix.length()) {
+                    lPrefix = currentPrefix;
                 }
             }
             return lPrefix;
